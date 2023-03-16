@@ -40,7 +40,6 @@ set -o ignoreeof
 export PATH="$PATH:$HOME/.scripts"
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$HOME/.local/bin"
-export SUDO_ASKPASS="$HOME/.local/bin/dpass"
 
 
 #infinite history
@@ -62,6 +61,7 @@ export TERMINFO="$XDG_DATA_HOME/terminfo"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
+export GRIM_DEFAULT_DIR="$HOME/pix/Screenshots"
 
 # Load aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
