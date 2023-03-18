@@ -40,6 +40,7 @@ set -o ignoreeof
 export PATH="$PATH:$HOME/.scripts"
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$HOME/.local/bin"
+export SUDO_ASKPASS="$HOME/.local/bin/tofi-askpass"
 
 
 #infinite history
