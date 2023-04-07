@@ -1,21 +1,24 @@
 #!/bin/bash
 
-rootpixloc="$HOME/pix/Wallpaper/4chget"
-option=$(echo -e "wg\nw" | dmenu -p "Is it wallpaper/general (wg) or anime wallpaper (w)?")
-dir=$(echo "" | dmenu -p "Enter folder name")    
-threadopt=$(echo -e "Yes\nNo" | dmenu -p "Do you have the thread link in your clipboard?")
+rootpapesdir="$HOME/pix/Wallpaper/4chget"
+while [[ "$option" != "w" && "$option" != "wg" ]]; do
+    option=$(echo -e "wg\nw" | tofi --prompt-text "Is it wallpaper/general (wg) or anime wallpaper (w)?")
+done
 
-[ "$threadopt" == "Yes" ] && thread=$(xclip -o|xargs -I % echo %|cut -d\/ -f6) || thread=$(echo "" | dmenu -p "Enter thread no.: (#######)") &&
+[[ $option == "w" ]] && parentdir="$rootpapesdir/w" && 	nel="nel" || parentdir="$rootpapesdir/wg"
 
-if [[ "$option" = w ]] ; then
-        mkdir -p "$rootpixloc"/w/"$dir"
-	nel="nel"
-    else
-        mkdir -p "$rootpixloc"/wg/"$dir"
-fi
+while [[ -d "$parentdir/$dir" ]]; do
+    dir=$(tofi --prompt-text "Enter folder name: " --require-match=false </dev/null)
+done
+endir="$parentdir/$dir"
+mkdir -p "$endir"
 
-wget -P "$rootpixloc"/"$option"/"$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '????????????????s.*' https://boards.4chan$nel.org/$option/thread/"$thread"
+threadopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you have the thread link in your clipboard?")
 
-viewopt=$(echo -e "Yes\nNo" | dmenu -p "Would you like to view the images?")
-endir=$rootpixloc\/$option\/$dir
-[ $viewopt == Yes ] && [ $(find $endir -type f | wc -l ) -ge 104 ] || sxiv -f -sf $endir || sxiv -tf -sf $endir
+[[ "$threadopt" == "Yes" ]] && thread=$(wl-paste | grep -oP '(?<=thread\/)\d+') || thread=$(tofi --prompt-text "Enter thread no.: (#######) " --require-match false </dev/null)
+
+wget -P "$endir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' "https://boards.4chan$nel.org/$option/thread/$thread"
+#wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' "https://boards.4chan$nel.org/$option/thread/$thread"
+
+viewopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you wish to view the downloaded papes now?")
+[[ $viewopt == Yes ]] && imv -fr $endir
