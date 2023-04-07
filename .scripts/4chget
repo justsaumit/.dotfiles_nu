@@ -4,41 +4,33 @@ rootpapesdir="$HOME/pix/wallpaper/4chget"
 echo "Welcome to 4chan web/image scrapping script"
 echo "Is it wallpaper/general (wg) or anime wallpaper (w)?"
 read option
+#Validate user input
 while [[ "$option" != "w" && "$option" != "wg" ]]; do
     read -p "Please choose a valid option w or wg: " option
 done
+if [[ $option == "w" ]] ; then
+    parentdir="$rootpapesdir/w"
+else 
+    parentdir="$rootpapesdir/wg"
+fi
 echo "Enter folder name:"
 read dir
+#Validate directory name
+while [[ -d "$parentdir"/"$dir" ]]; do
+  read -rp "Directory already exists. Please enter a different name:" dir
+done
+mkdir -p "$rootpapesdir"/"$dir"
+echo "Directory '$dir' created successfully."
+
 echo "Enter thread no.: (#######)"
 read thread
-if [[ $option = w ]] ; then
-    while true; do
-        if [ -d "$rootpapesdir"/w/"$dir" ]; then
-            echo "Folder already exists. Please choose a different name:"
-            read dir
-        else
-            mkdir -p "$rootpapesdir"/w/"$dir"
-            echo "Folder '$dir' created successfully."
-            break
-        fi
-    done
-elif [[ $option = wg ]] ; then
-    while true; do
-        if [ -d "$rootpapesdir"/wg/"$dir" ]; then
-            echo "Folder already exists. Please choose a different name:"
-            read dir
-        else
-            mkdir -p "$rootpapesdir"/wg/"$dir"
-            echo "Folder '$dir' created successfully."
-            break
-        fi
-    done
-fi
 
 case "$option" in
 	"wg")
-		wget -P "$rootpapesdir"/wg/"$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' https://boards.4chan.org/wg/thread/"$thread" ;;
+		wget -P "$parentdir"/"$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' https://boards.4chan.org/wg/thread/"$thread" ;;
 
 	"w")
-		wget -P "$rootpapesdir"/w/"$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' https://boards.4channel.org/w/thread/"$thread" ;;
+		wget -P "$parentdir"/"$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' https://boards.4channel.org/w/thread/"$thread" ;;
 esac
+
+echo "Wallpapers downloaded successfully."
