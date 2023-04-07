@@ -1,0 +1,43 @@
+[binds]
+q = quit
+
+# Image Navigation
+<Left> = prev
+<p> = prev
+<Right> = next
+<n> = next
+gg = goto 1
+<Shift+G> = goto -1
+
+# Panning
+j = pan 0 -50
+k = pan 0 50
+h = pan 50 0
+l = pan -50 0
+
+# Zooming
+<Up> = zoom 1
+<Shift+plus> = zoom 1
+<Down> = zoom -1
+<minus> = zoom -1
+
+<Ctrl+r> = rotate by 90
+<Ctrl+R> = rotate by 270
+
+# Other commands
+x = close
+f = fullscreen
+d = overlay
+a = zoom actual
+r = reset
+
+<c> = wl-copy < "imv_current_file"
+<i> = convert $file -channel RGB -negate /tmp/output.png && imv /tmp/output.png
+# Delete and then close an open image by pressing 'X'
+<Ctrl+D> = exec trash-put "$imv_current_file"
+
+# Rotate the currently open image by 90 degrees by pressing 'R'
+#<Ctrl+R> = exec mogrify -rotate 90 "$imv_current_file"
+
+# Use dmenu as a prompt for tagging the current image
+#u = exec echo "$imv_current_file" >> ~/tags/$(ls ~/tags | dmenu -p "tag")
