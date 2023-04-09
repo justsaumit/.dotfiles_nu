@@ -18,7 +18,6 @@ threadopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you have the thread link 
 [[ "$threadopt" == "Yes" ]] && thread=$(wl-paste | grep -oP '(?<=thread\/)\d+') || thread=$(tofi --prompt-text "Enter thread no.: (#######) " --require-match false </dev/null)
 
 wget -P "$endir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' "https://boards.4chan$nel.org/$option/thread/$thread"
-#wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' "https://boards.4chan$nel.org/$option/thread/$thread"
 
 viewopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you wish to view the downloaded papes now?")
 [[ $viewopt == Yes ]] && imv -fr $endir
