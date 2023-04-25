@@ -1,0 +1,151 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height": 49, 
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "modules-left": ["custom/launcher","wlr/workspaces"],
+    //"modules-left": ["clock","custom/weather","wlr/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["cpu","temperature","custom/memory","pulseaudio","pulseaudio#microphone", "clock", "battery","backlight","tray"],
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+// Modules configuration
+
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "~/.config/waybar/scripts",
+    "tooltip": false
+  },
+
+    "wlr/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "on-click": "activate",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+    
+    "cpu": {
+        "interval": 1,
+        "format": "󰍛 {usage}% ",
+        "tooltip": false,
+        "on-click": "kitty -e htop"
+    },
+
+//   "custom/weather" : {
+//        //shows the current weather and forecast
+//        "tooltip" : true,
+//        "format" : "{}",
+//        "interval" : 30,
+//        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+//        "return-type" : "json"
+//    },
+
+    "temperature": {
+        "thermal-zone": 1,
+        "critical-threshold": 80,
+        "format": "{icon}{temperatureC}°C",
+        "format-alt": "{temperatureF}°F {icon}",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C ",
+        "format-icons": ["", "", "󰈸"],
+        "tooltip": false,
+        "on-click": "kitty -e gotop"
+    },
+
+    "custom/memory": {
+        "interval": 5,
+        "exec":"~/.scripts/memory",
+        "format": " {}",
+        "tooltip": false,
+        "on-click": "kitty -e gotop"
+    },
+
+    "clock": {
+        "format": "{: %I:%M %p   %a, %b %e}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", ""],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "min-length": 6
+    },
+
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{essid} - {ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " {format_source}",
+        "tooltip": false,
+        "format-muted": "x",
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 1",
+        "on-scroll-down": "pamixer -d 1",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        //"format-source-muted": " Muted",
+        "format-source-muted": " ",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    },
+    
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+    },
+
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    }
+
+}
