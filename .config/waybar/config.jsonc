@@ -9,7 +9,7 @@
     "modules-left": ["custom/launcher","wlr/workspaces"],
     //"modules-left": ["clock","custom/weather","wlr/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["cpu","temperature","custom/memory","pulseaudio","pulseaudio#microphone", "clock", "battery","backlight","tray"],
+    "modules-right": ["cpu","temperature","custom/memory","pulseaudio","pulseaudio#microphone","clock","network","battery","backlight","tray"],
     "hyprland/window": {
         "format": "{}"
     },
@@ -84,7 +84,7 @@
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""],
+        "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
         "on-scroll-up": "brightnessctl set 1%+",
         "on-scroll-down": "brightnessctl set 1%-",
         "min-length": 6
@@ -120,9 +120,9 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": " {volume}%",
+        "format-source": "󰍬 {volume}%",
         //"format-source-muted": " Muted",
-        "format-source-muted": " ",
+        "format-source-muted": "󰍭 ",
         "on-click": "pamixer --default-source -t",
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
@@ -139,7 +139,7 @@
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+        "format-icons": ["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂","󰁹"]
     },
 
 
