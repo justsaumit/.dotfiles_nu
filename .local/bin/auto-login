@@ -1,0 +1,7 @@
+#!/bin/sh
+
+
+##Add this shell script to your PATH to access it from any location
+##Replace /path/to/ to the location of the python script
+
+python $HOME/codebase/python/projects/auto-captive-portal-login/auto-login.py "$1"

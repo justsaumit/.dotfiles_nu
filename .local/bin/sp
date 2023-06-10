@@ -1,0 +1,2 @@
+#!/bin/sh
+LD_PRELOAD=$HOME/.local/src/spotify/spotifywm/spotifywm.so spotify
