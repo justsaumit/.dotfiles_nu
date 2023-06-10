@@ -1,0 +1,7 @@
+#!/bin/sh
+
+alias \
+	cb='cd ~/codebase' \
+        dl='cd ~/dl' \
+        px='cd ~/pix' \
+        src='cd ~/.local/src/'
