@@ -1,0 +1,3 @@
+#!/bin/sh
+
+free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.1fGB/16GB\n", ( $3 / 1024))}'
