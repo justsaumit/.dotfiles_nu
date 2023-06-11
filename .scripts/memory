@@ -1,3 +1,16 @@
 #!/bin/sh
 
-free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.1fGB/16GB\n", ( $3 / 1024))}'
+# Get the total memory in human readable format
+total_memory_gb=$(free -h | awk '/^Mem:/{print $2}')
+
+# Check the total memory and set the relative value
+if [[ $total_memory_gb == "7Gi" ]]; then
+  total_mem=8
+elif [[ $total_memory_gb == "15Gi" ]]; then
+  total_mem=16
+else
+    totalmem=$(echo $total_memory_gb | sed 's/Gi//')
+fi
+
+# Display the used memory as a percentage of the total memory
+free --mebi | sed -n '2{p;q}' | awk '{printf ("%2.1fGB/'$total_mem'GB\n", ( $3 / 1024))}'
