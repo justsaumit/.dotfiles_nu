@@ -1,6 +1,7 @@
 #!/bin/bash 
 swayidle -w \
-      timeout 240 ' swaylock ' \
-      timeout 400 ' hyprctl dispatch dpms off' \
+      timeout 600 'swaylock -f' \
+      timeout 900 ' hyprctl dispatch dpms off' \
               resume ' hyprctl dispatch dpms on'  \
-      before-sleep 'swaylock'
+      before-sleep 'loginctl lock-session $XDG_SESSION_ID' \
+      lock 'playerctl -a pause && swaylock -f' 
