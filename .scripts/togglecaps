@@ -5,11 +5,11 @@ hyprland_cfg="$HOME/.config/hypr/hyprland.conf"
 line1=$(grep "kb_options" "$hyprland_cfg" | head -n 1)
 line2=$(grep "kb_options" "$hyprland_cfg" | tail -n 1)
 
-if [ "${line1:0:1}" = "#" ]; then
+if echo "$line1" | grep -qE "^\s*#"; then
   # If first line is commented, uncomment it and comment the second line
   sed -i 's/^#\s*kb_options=caps:escape/kb_options=caps:escape/' "$hyprland_cfg"
   sed -i 's/^kb_options=ctrl:nocaps/# kb_options=ctrl:nocaps/' "$hyprland_cfg"
-elif [ "${line2:0:1}" = "#" ]; then
+elif echo "$line1" | grep -qE "^\s*#"; then
   # If second line is commented, uncomment it and comment the first line
   sed -i 's/^#\s*kb_options=ctrl:nocaps/kb_options=ctrl:nocaps/' "$hyprland_cfg"
   sed -i 's/^kb_options=caps:escape/# kb_options=caps:escape/' "$hyprland_cfg"
