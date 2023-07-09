@@ -1,6 +1,6 @@
 #!/bin/sh
 
-psout=$(ps -u $USER -o pid,%cpu,%mem,comm | sed -n '1!p' | sort -b -k2 -r| cut --characters=1-18 --complement | awk '!x[$0]++'| dmenu -i -l 15  )
+psout=$(ps -u $USER -o pid,%cpu,%mem,comm | sed -n '1!p' | sort -b -k2 -r| cut --characters=1-18 --complement | awk '!x[$0]++'| tofi --prompt-text "Choose the program you wish to kill: ")
 ##uniq without piping into sort before with the help of awk
 
 ##pname of telegram-desktop is displayed as telegram-deskto
