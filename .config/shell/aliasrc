@@ -66,7 +66,7 @@ alias \
 	ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"' \
 	recentpacks="grep -i installed /var/log/pacman.log |tac| fzf | cut -d' ' -f4 | "$CLIP" " \
 	scr='ffmpeg -f x11grab -i :0.0 out.mp4' \
-        ss="maim -D -u --select | tee "~/pix/Screenshots/pic-sel-$(date '+%y-%m-%d--%H-%M-%S').png" | xclip -selection clipboard -t image/png" \
+        ss="maim -D -u --select | tee "~/pix/Screenshots/pic-sel-$(date '+%y-%m-%d--%H-%M-%S').png" | "$CLIP" " \
 	pas='pulseaudio --start' \
 	pak='pulseaudio --kill' \
 	pm='pulsemixer' \
@@ -78,6 +78,10 @@ alias \
 	dwm='cd ~/.local/src/dwm' \
 	dwmblocks='cd ~/.local/src/dwmblocks' \
 	calc='quich' \
+        wlc='wl-copy' \
+        wlk='wl-copy' \
+        pw='pomodoro work' \
+        pb='pomodoro break' \
 	rm='trash -v' \
 	listdel='trash-list' \
 	restore='trash-restore' \
