@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/saumit/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/saumit/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/saumit/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -128,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/saumit/.local/share/nvim/site/pack/packer/start/pywal",
     url = "https://github.com/AlphaTechnolog/pywal.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/saumit/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["tokyodark.nvim"] = {
     loaded = true,

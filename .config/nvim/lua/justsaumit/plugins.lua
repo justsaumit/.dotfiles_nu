@@ -51,13 +51,14 @@ return packer.startup(function(use)
 --ColorSchemes
     use "folke/tokyonight.nvim"
     use "tiagovla/tokyodark.nvim"
+    use { "catppuccin/nvim", as = "catppuccin" }
     use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
 --Web-devicons
     use "kyazdani42/nvim-web-devicons"
 --Lualine
     use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
 --Bufferline
-    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'nvim-tree/nvim-web-devicons'}
 --Nvim-tree File explorer for nvim
     use {'nvim-tree/nvim-tree.lua',  requires = { 'nvim-tree/nvim-web-devicons'}}
 --Whick-key - displays a popup with possible key bindings
@@ -66,7 +67,7 @@ return packer.startup(function(use)
 --    use 'windwp/nvim-ts-autotag'
 --Markdown + Zenmode
 --Telescope
---    use {'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} }}
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.2', requires = { {'nvim-lua/plenary.nvim'} }}
 --cmp
 --    use 'hrsh7th/nvim-cmp'
 --cmp plugins
