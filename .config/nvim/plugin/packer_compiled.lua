@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/saumit/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/NvChad/nvim-colorizer.lua"
   },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "/home/saumit/.local/share/nvim/site/pack/packer/start/nvim-comment",
+    url = "https://github.com/terrortylor/nvim-comment"
+  },
   ["nvim-lastplace"] = {
     loaded = true,
     path = "/home/saumit/.local/share/nvim/site/pack/packer/start/nvim-lastplace",
