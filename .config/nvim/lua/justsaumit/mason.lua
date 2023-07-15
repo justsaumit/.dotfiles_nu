@@ -23,5 +23,17 @@ require("mason").setup({
     max_concurrent_installers = 10,
 })
 require("mason-lspconfig").setup ({
-    ensure_installed = { "lua_ls", "clangd", "pyright", "rust_analyzer" },
+    ensure_installed = {
+        "lua_ls",
+        "clangd",
+        "pyright",
+        "rust_analyzer",
+        "bashls",
+        "cssls",
+        "html",
+        "lua_ls",
+        "marksman",
+        "tsserver",
+        "yamlls",
+    },
 })
