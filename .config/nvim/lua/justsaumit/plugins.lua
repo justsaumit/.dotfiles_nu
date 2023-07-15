@@ -61,8 +61,20 @@ return packer.startup(function(use)
     use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'nvim-tree/nvim-web-devicons'}
 --Nvim-tree File explorer for nvim
     use {'nvim-tree/nvim-tree.lua',  requires = { 'nvim-tree/nvim-web-devicons'}}
---Whick-key - displays a popup with possible key bindings
+--Which-key - displays a popup with possible key bindings
     use 'folke/which-key.nvim'
+--Mason-nvim Portable Package manager for LSP and DAP servers, linters and formatters
+    use { "williamboman/mason.nvim", run = ":MasonUpdate"} -- :MasonUpdate updates registry contents
+--lsp
+    use("williamboman/mason-lspconfig.nvim")
+    use("neovim/nvim-lspconfig") --> Collection of configurations for built-in LSP client
+    use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
+    use("tami5/lspsaga.nvim") --> icons for LSP diagnostics
+    use("onsails/lspkind-nvim") --> vscode-like pictograms for neovim lsp completion items
+    use("hrsh7th/nvim-cmp") --> Autocompletion plugin
+    use("hrsh7th/cmp-nvim-lsp") --> LSP source for nvim-cmp
+    use("saadparwaiz1/cmp_luasnip") --> Snippets source for nvim-cmp
+    use("L3MON4D3/LuaSnip") --> Snippets plugin
 --HTML
 --    use 'windwp/nvim-ts-autotag'
 --Markdown + Zenmode
