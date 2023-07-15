@@ -68,31 +68,24 @@ return packer.startup(function(use)
 --lsp
     use("williamboman/mason-lspconfig.nvim")
     use("neovim/nvim-lspconfig") --> Collection of configurations for built-in LSP client
-    use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
     use("tami5/lspsaga.nvim") --> icons for LSP diagnostics
     use("onsails/lspkind-nvim") --> vscode-like pictograms for neovim lsp completion items
-    use("hrsh7th/nvim-cmp") --> Autocompletion plugin
-    use("hrsh7th/cmp-nvim-lsp") --> LSP source for nvim-cmp
-    use("saadparwaiz1/cmp_luasnip") --> Snippets source for nvim-cmp
-    use("L3MON4D3/LuaSnip") --> Snippets plugin
+--cmp - Autocompletions
+    use("hrsh7th/nvim-cmp")         --completion engine
+    use("L3MON4D3/LuaSnip")         --snippets engine
+    use("saadparwaiz1/cmp_luasnip") --luasnip completion source for nvim-cmp
+--cmp plugins
+    use("hrsh7th/cmp-nvim-lsp")--nvim-cmp source for neovim's built-in language server client.
+    use("hrsh7th/cmp-buffer")  --nvim-cmp source for buffer words.
+    use("hrsh7th/cmp-path")    --nvim-cmp source for filesystem path
+    use("hrsh7th/cmp-cmdline") --nvim-cmp source for vim's cmdline
+
+--    use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
 --HTML
 --    use 'windwp/nvim-ts-autotag'
 --Markdown + Zenmode
 --Telescope
     use {'nvim-telescope/telescope.nvim', tag = '0.1.2', requires = { {'nvim-lua/plenary.nvim'} }}
---cmp
---    use 'hrsh7th/nvim-cmp'
---cmp plugins
---    use 'hrsh7th/cmp-buffer'
---    use 'hrsh7th/cmp-path'
---    use 'hrsh7th/cmp-cmdline'
---    use 'hrsh7th/cmp-nvim-lsp'
- -- use 'neovim/nvim-lspconfig'
-
---    use "saadparwaiz1/cmp_luasnip" -- snippet completions
-
-  -- snippets
---  use "L3MON4D3/LuaSnip" --snippet engine
 --  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 --
 --  Comments - Toggle comments in Neovim
