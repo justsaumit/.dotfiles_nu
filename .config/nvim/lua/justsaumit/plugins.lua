@@ -86,6 +86,9 @@ return packer.startup(function(use)
 --Markdown + Zenmode
 --Telescope
     use {'nvim-telescope/telescope.nvim', tag = '0.1.2', requires = { {'nvim-lua/plenary.nvim'} }}
+-- ToggleTerm
+    use ('akinsho/toggleterm.nvim')
+
 --  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 --
 --  Comments - Toggle comments in Neovim
