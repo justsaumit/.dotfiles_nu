@@ -1,23 +1,25 @@
---vim.opt.termguicolors = true
-
+--Enable true color support for the terminal
+vim.opt.termguicolors = true
+--Protected call
 local status, bufferline = pcall(require, "bufferline")
 if not status then
   return
 end
 
-require('bufferline').setup {
+bufferline.setup {
      options = {
             mode = "buffers",
             numbers = "none",
-            close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
-            right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
-            left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
-            middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
+            close_command = "bdelete! %d",
+            right_mouse_command = "bdelete! %d",
+            left_mouse_command = "buffer %d",
+            middle_mouse_command = nil,
             indicator = {
                 icon = '▎',
                 style = 'icon',
             },
-            buffer_close_icon = '󰠳',
+            --buffer_close_icon = '󰠳',
+            buffer_close_icon = "",
             modified_icon = '●',
             close_icon = '',
             -- close_icon = '',
@@ -38,15 +40,14 @@ require('bufferline').setup {
             separator_style = "thin", -- | "thick" | "thin" | slant,
             enforce_regular_tabs = true,
             always_show_bufferline = true,
-            name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-                -- remove extension from markdown files for example
-                if buf.name:match('%.md') then
-                    return vim.fn.fnamemodify(buf.name, ':t:r')
-                end
-            end
+            -- name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+            --     -- remove extension from markdown files for example
+            --     if buf.name:match('%.md') then
+            --         return vim.fn.fnamemodify(buf.name, ':t:r')
+            --     end
+            -- end
         }
 }
-
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 keymap("", "<Space>", "<Nop>", opts)
@@ -68,4 +69,3 @@ keymap("n", "W", ":bdelete!<CR>", opts)
 --Shift+Tab for Backward Cycle
 keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
-

@@ -32,9 +32,10 @@ vim.cmd([[autocmd BufEnter *.cpp map <F4> :w <CR> :!g++ % -o %< && ./%< <CR>]])
 --Save file with Ctrl+S
 keymap("n", "<C-s>", ":w<CR>", opts)
 --Toggle nvim-tree
-keymap("n", "<m-e>", ":NvimTreeToggle<CR>", opts)
+keymap('n', '<C-e>', ':NvimTreeToggle<CR>', opts)
+keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 --Disable C-e
-keymap("n", "<c-e>", ":<CR>", opts)
+-- keymap("n", "<C-e>", ":<CR>", opts)
 
 -- Better window navigation for split
 keymap("n", "<C-h>", "<C-w>h", opts)
