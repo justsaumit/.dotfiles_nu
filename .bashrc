@@ -11,6 +11,7 @@
 [[ $- != *i* ]] && return
 
 #neofetch small
+pfetch
 
 #ble.sh bash w vi-mode and auto-completion
 ##[[ $- == *i* ]] && source $HOME/.local/src/blesh/ble.sh --noattach
@@ -19,38 +20,45 @@ alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
 
 export TERM="xterm-256color"
+export EDITOR="nvim"
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 #export PS1="[\u@\h ~]\\$\[$(tput sgr0)\]"
 
 #susexport PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 6)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
-
-#auto cd 
-## Allows you to cd into directory merely by typing the directory name.
-shopt -s autocd
-
+# Shell options
 #vi mode in bash (uncomment after expertise)
 set -o vi
-
-#Ctrl+D EOF Signal will work on billionth press
-#export IGNOREEOF=1000000000
+#Ctrl+D EOF Disable
 set -o ignoreeof
+shopt -s autocd
+shopt -s cdspell # autocorrects cd misspellings
+shopt -s cmdhist # save multi-line commands in history as single line
+shopt -s dotglob
+shopt -s histappend # do not overwrite history
+shopt -s expand_aliases # expand aliases
+shopt -s extglob
+#ignore upper and lowercase when TAB completion
+bind "set completion-ignore-case on"
 
-
+#envpaths
 export PATH="$PATH:$HOME/.scripts"
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$HOME/.local/bin"
 export SUDO_ASKPASS="$HOME/.local/bin/tofi-askpass"
+#cuda
+export PATH=/opt/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
 
-
+# Permanent history ignore dupes
+export HISTCONTROL=ignoredups:erasedups
 #infinite history
-HISTSIZE= HISTFILESIZE= 
+export HISTFILESIZE=
+export HISTSIZE=
 #timecodes in bash history :))
 #HISTTIMEFORMAT="%d/%m/%y %T "
-HISTTIMEFORMAT="%F %T"
-#ignore dupes
-export HISTCONTROL=ignoredups:erasedups
+export HISTTIMEFORMAT="[%F %T] "
 
 #XDG
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -75,4 +83,21 @@ export GRIM_DEFAULT_DIR="$HOME/pix/Screenshots"
 
 #[[ ${BLE_VERSION-} ]] && ble-attach
 
-export N_PREFIX="$HOME/.local/usr/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+#export N_PREFIX="$HOME/.local/usr/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+osc7_cwd() {
+    local strlen=${#PWD}
+    local encoded=""
+    local pos c o
+    for (( pos=0; pos<strlen; pos++ )); do
+        c=${PWD:$pos:1}
+        case "$c" in
+            [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+            * ) printf -v o '%%%02X' "'${c}" ;;
+        esac
+        encoded+="${o}"
+    done
+    printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+}
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }osc7_cwd
+
