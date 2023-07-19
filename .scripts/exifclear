@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Function to prompt the user and get confirmation
+confirm() {
+  read -r -p "$1 [Y/n] " response
+  case "$response" in
+    [yY][eE][sS]|[yY]|"")
+      true
+      ;;
+    *)
+      false
+      ;;
+  esac
+}
+
+# Function to handle errors
+handle_error() {
+  echo "Error: $1"
+  exit 1
+}
+
+# Check if exiftool or exiv2 is installed
+if ! command -v exiftool &> /dev/null && ! command -v exiv2 &> /dev/null; then
+  echo "Neither exiftool nor exiv2 found. Please install either of them to proceed."
+  exit 1
+fi
+
+# Prompt the user for confirmation
+if confirm "Do you want to clear all Exif data metadata in the current folder and its subdirectories?"; then
+  if command -v exiftool &> /dev/null; then
+    # Run the exiftool command to clear metadata
+    if find ./ -type f -exec exiftool -all= "{}" \; ; then
+        echo "Exif data cleared successfully! still double-check if any metadata is present."
+    else handle_error "Failed to clear Exif data."
+    fi
+    # Remove files with names ending in "_original"
+    if find ./ -type f -name "*_original" -exec rm -rf "{}" \; ; then
+        echo "Files ending in '_original' removed successfully!";
+    else handle_error "Failed to remove '_original' files."
+    fi
+  elif command -v exiv2 &> /dev/null; then
+    # Run the exiv2 command to clear metadata
+    if find ./ -type f -exec exiv2 rm "{}" \; ; then
+        echo "Exif data cleared successfully! still double-check if any metadata is present."
+    else handle_error "Failed to clear Exif data."
+    fi
+  else handle_error "Neither exiftool nor exiv2 found."
+  fi
+else 
+   echo "Operation cancelled."
+fi
