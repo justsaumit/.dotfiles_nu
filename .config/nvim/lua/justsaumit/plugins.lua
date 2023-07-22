@@ -82,7 +82,7 @@ return packer.startup(function(use)
 
 --    use("jose-elias-alvarez/null-ls.nvim") --> inject lsp diagnistocs, formattings, code actions, and more ...
 --HTML
---    use 'windwp/nvim-ts-autotag'
+    use("windwp/nvim-ts-autotag") -- Use treesitter autotag
 --Markdown + Zenmode
 --Telescope
     use {'nvim-telescope/telescope.nvim', tag = '0.1.2', requires = { {'nvim-lua/plenary.nvim'} }}

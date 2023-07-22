@@ -16,5 +16,11 @@ require'nvim-treesitter.configs'.setup {
   },
   autotag = {
     enable = true,
+    enable_close = true,
+    enable_close_on_slash = true,
+    enable_rename = true,
+    filetypes = { "html" , "xml",
+    'javascript', 'typescript', 'svelte',
+    'markdown',},
   }
 }
