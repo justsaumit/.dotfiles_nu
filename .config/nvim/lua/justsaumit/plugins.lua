@@ -68,7 +68,7 @@ return packer.startup(function(use)
 --lsp
     use("williamboman/mason-lspconfig.nvim")
     use("neovim/nvim-lspconfig") --> Collection of configurations for built-in LSP client
-    use("tami5/lspsaga.nvim") --> icons for LSP diagnostics
+    use("kkharji/lspsaga.nvim") --> icons for LSP diagnostics
     use("onsails/lspkind-nvim") --> vscode-like pictograms for neovim lsp completion items
 --cmp - Autocompletions
     use("hrsh7th/nvim-cmp")         --completion engine
@@ -90,7 +90,9 @@ return packer.startup(function(use)
     use ('akinsho/toggleterm.nvim')
 
 --  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
---
+
+-- Dashboard
+    -- use {'glepnir/dashboard-nvim', event = 'Vimenter'}
 --  Comments - Toggle comments in Neovim
     use "terrortylor/nvim-comment"
 
