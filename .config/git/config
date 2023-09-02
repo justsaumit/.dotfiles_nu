@@ -1,0 +1,36 @@
+[user]
+    email = justsaumit@protonmail.com
+    name = Saumit Dinesan
+    signingkey = 6558C915A20CDD93
+[commit]
+    gpgsign = true
+[tag]
+    gpgSign = true
+[init]
+    defaultBranch = main
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    lg = log --graph --oneline --all
+    hist = log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold yellow)(%ar)%C(reset)%C(auto)%d%C(reset)%n''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    amend = commit --amend
+[core]
+    #editor = nano
+    #autocrlf = input
+    #whitespace = trailing-space,space-before-tab
+[color]
+    # Custom color settings for Git output
+    ui = auto
+[diff]
+    # Configure Git's diff tool
+    #tool = vscode
+[merge]
+    # Configure Git's merge tool
+    #tool = vscode``
+[filter "lfs"]
+	  clean = git-lfs clean -- %f
+	  smudge = git-lfs smudge -- %f
+	  process = git-lfs filter-process
+	  required = true
