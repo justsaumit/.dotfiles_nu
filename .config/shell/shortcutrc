@@ -1,7 +1,15 @@
 #!/bin/sh
 
 alias \
-	cb='cd ~/codebase' \
-        dl='cd ~/dl' \
-        px='cd ~/pix' \
-        src='cd ~/.local/src/'
+	cf='cd ~/.config/' \
+	cfg='cd ~/.config/' \
+	nvc='cd ~/.config/nvim' \
+	src='cd ~/.local/src/' \
+	cb='cd ~/codebase/' \
+	dl='cd ~/Downloads' \
+	px='cd ~/pix' \
+	brc='nvim ~/.bashrc && source ~/.bashrc' \
+	zrc='nvim ~/.zshrc && exec zsh' \
+	nbu='nvim ~/.config/newsboat/urls' \
+	nbc='nvim ~/.config/newsboat/config' \
+	tt='img2sixel ~/TT.png'

@@ -3,13 +3,14 @@
 # Use neovim for vim if present.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
-# use x-clip if X11 and wl-copy if Wayland as clipboard
+# use x-clip if X11 and wl-copy if Wayland, as clipboard
 [ "$XDG_SESSION_TYPE" = "x11" ] && CLIP="xclip -sel c" || [ "$XDG_SESSION_TYPE" = "wayland" ] && CLIP="wl-copy"
 
 # auto add sudo in front of commands
-for command in mount umount pacman updatedb su ; do
+for command in mount umount pacman updatedb su; do
 	alias $command="sudo $command"
-done; unset command
+done
+unset command
 
 ##aliases
 
@@ -28,10 +29,11 @@ alias \
 	ncmpcpp='ncmpcpp -b .config/ncmpcpp/keybindings' \
 	jds='export _JAVA_AWT_WM_NONREPARENTING=1' \
 	jd='jdownloader' \
-	yt='ytfzf -t' \
+	yt='ytfzf -lts' \
 	ytq='ytfzf -faH' \
 	leaf='notepadqq' \
 	qb='qbittorrent' \
+	jn='jupyter-notebook' \
 	polkit='/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
 
 #git
@@ -42,12 +44,12 @@ alias \
 #cut -d\ -f4
 alias \
 	g1='git add "$(git status -s | fzf | cut -b 1-3 --complement)"' \
-        gr='git restore --staged "$(git status -s | fzf | cut -b 1-3 --complement)"' \
+	gr='git restore --staged "$(git status -s | fzf | cut -b 1-3 --complement)"' \
 	g2='git commit -S -m' \
 	g3='git push "$(git remote show | fzf)" HEAD' \
 	gs='git status' \
 	gd='git diff --staged' \
-        gu='git remote update && git status -uno' \
+	gu='git remote update && git status -uno' \
 	glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold yellow)(%ar)%C(reset)%C(auto)%d%C(reset)%n''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
 #useful command line substitutions
@@ -66,8 +68,9 @@ alias \
 	ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"' \
 	recentpacks="grep -i installed /var/log/pacman.log |tac| fzf | cut -d' ' -f4 | "$CLIP" " \
 	scr='ffmpeg -f x11grab -i :0.0 out.mp4' \
-        ss="maim -D -u --select | tee "~/pix/Screenshots/pic-sel-$(date '+%y-%m-%d--%H-%M-%S').png" | "$CLIP" " \
-	pas='pulseaudio --start' \
+	ss="maim -D -u --select | tee "~/pix/Screenshots/pic-sel-$(date '+%y-%m-%d--%H-%M-%S').png" | "$CLIP" "
+
+pas='pulseaudio --start' \
 	pak='pulseaudio --kill' \
 	pm='pulsemixer' \
 	ssha="echo 'ssh-keygen -t ed25519 -a 100 -f ~/.ssh/<Identityfile> -C <comment>'" \
@@ -78,12 +81,12 @@ alias \
 	dwm='cd ~/.local/src/dwm' \
 	dwmblocks='cd ~/.local/src/dwmblocks' \
 	calc='quich' \
-        wlc='wl-copy' \
-        wlk='wl-copy' \
-        pw='pomodoro work' \
-        pb='pomodoro break' \
+	wlc='wl-copy' \
+	wlk='wl-copy' \
+	pw='pomodoro work' \
+	pb='pomodoro break' \
 	rm='trash -v' \
 	listdel='trash-list' \
 	restore='trash-restore' \
 	empty='trash-empty' \
-	q='exit' 
+	q='exit'
