@@ -73,7 +73,7 @@
     "interval": 1,
     "format": "󰍛 {usage}% ",
     "tooltip": false,
-    "on-click": "kitty -e htop"
+    "on-click": "foot --term -e htop"
   },
   "temperature": {
     "thermal-zone": 1,
@@ -87,14 +87,14 @@
       "󰈸"
     ],
     "tooltip": false,
-    "on-click": "kitty -e gotop"
+    "on-click": "foot --term xterm -e gotop"
   },
   "custom/memory": {
     "interval": 5,
     "exec": "~/.scripts/memory",
     "format": " {}",
     "tooltip": false,
-    "on-click": "kitty -e gotop"
+    "on-click": "foot --term xterm -e gotop"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
