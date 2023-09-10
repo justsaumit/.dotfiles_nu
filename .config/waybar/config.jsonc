@@ -12,10 +12,13 @@
   "passthrough": false,
   "modules-left": [
     "custom/launcher",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/playerctl",
+    "custom/playerlabel"
   ],
   "modules-center": [
-    "hyprland/window"
+    "hyprland/window",
+    "idle_inhibitor"
   ],
   "modules-right": [
     "cpu",
@@ -67,6 +70,32 @@
     "format-icons": {
       "activated": "",
       "deactivated": ""
+    }
+  },
+  "custom/playerctl": {
+    "format": "{icon}",
+    "return-type": "json",
+    "max-length": 64,
+    "exec": "playerctl -p spotify metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click-middle": "playerctl -p spotify play-pause",
+    "on-click": "playerctl -p spotify previous",
+    "on-click-right": "playerctl -p spotify next",
+    "format-icons": {
+      "Playing": "<span foreground='#a6adc8'>󰒮 󰏥 󰒭</span>",
+      "Paused": "<span foreground='#a6adc8'>󰒮 󰐌 󰒭</span>"
+    }
+  },
+  "custom/playerlabel": {
+    "format": "<span>{}</span>",
+    "return-type": "json",
+    "max-length": 48,
+    "exec": "playerctl -p spotify metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click-middle": "playerctl -p spotify play-pause",
+    "on-click": "playerctl -p spotify previous",
+    "on-click-right": "playerctl -p spotify next",
+    "format-icons": {
+      "Playing": "<span foreground='#313244'>󰒮 󰐌 󰒭</span>",
+      "Paused": "<span foreground='#313244'>󰒮 󰏥 󰒭</span>"
     }
   },
   "cpu": {
