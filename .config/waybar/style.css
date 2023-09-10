@@ -1,6 +1,8 @@
 * {
     border: none;
-    border-radius: 0;
+    border-radius: 0px;
+    /*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
+    /*font-family: Iosevka, FontAwesome, Noto Sans CJK;*/
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
     font-size: 15.9px;
@@ -12,24 +14,33 @@ window#waybar {
     color: #cdd6f4;
 }
 
-tooltip {
-    background: #1e1e2e;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+#workspaces {
+	background: #282828;
+	margin: 5px 5px 5px 5px;
+  padding: 0px 5px 0px 5px;
+	border-radius: 16px;
+  border: solid 0px #f4d9e1;
+  font-weight: normal;
+  font-style: normal;
 }
-
 #workspaces button {
-    padding: 5px;
+    padding: 0px 5px;
+    border-radius: 16px;
     color: #313244;
     margin-right: 5px;
 }
 
 #workspaces button.active {
     color: #a6adc8;
+    background-color: transparent;
+    border-radius: 16px;
 }
 
+#workspaces button:hover {
+	background-color: #6699CC;
+	color: black;
+	border-radius: 16px;
+}
 #workspaces button.focused {
     color: #a6adc8;
     background: #eba0ac;
@@ -42,15 +53,17 @@ tooltip {
     border-radius: 10px;
 }
 
-#workspaces button:hover {
-    background: #11111b;
-    color: #cdd6f4;
+tooltip {
+    background: #1e1e2e;
     border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
 }
 
 #custom-power_profile,
-#custom-weather,
 #custom-launcher,
+#idle-inhibitor,
 #window,
 #clock,
 #battery,
@@ -62,9 +75,11 @@ tooltip {
 #custom-memory,
 #workspaces,
 #tray,
-#backlight {
+#backlight,
+#custom-playerctl,
+#custom-playerlabel {
     background: #1e1e2e;
-    opacity: 0.8;
+    opacity: 0.9;
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 10px;
@@ -74,18 +89,17 @@ tooltip {
 #temperature {
     border-radius: 0px 0px 0px 0px;
 }
-
 #temperature.critical {
     color: #eba0ac;
 }
 
 #backlight {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 10px 10px 10px;
 }
 
 #tray {
     border-radius: 10px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 #workspaces {
@@ -119,7 +133,7 @@ tooltip {
 #clock {
     color: #fab387;
     border-radius: 10px 10px 10px 10px;
-    margin-left: 5px;
+    margin-right: 5px;
     border-right: 0px;
 }
 
@@ -134,7 +148,6 @@ tooltip {
 #network {
     color: #f9e2af;
     border-radius: 10px 0px 0px 10px;
-    margin-left: 5px;
     border-left: 0px;
     border-right: 0px;
 }
@@ -163,17 +176,42 @@ tooltip {
 #battery {
     color: #a6e3a1;
     border-radius: 0px 10px 10px 0px;
-    margin-right: 10px;
+    margin-right: 5px;
     border-left: 0px;
 }
 
-#custom-weather {
-    border-radius: 0px 10px 10px 0px;
+#idle-inhibitor{
+    border-radius: 10px 10px 10px 10px;
     border-right: 0px;
     margin-left: 0px;
 }
+
 #custom-launcher {
     border-radius: 0px 10px 10px 0px;
     border-right: 0px;
     margin-left: 0px;
+}
+
+#custom-playerctl {
+	padding-left: 15px;
+  padding-right: 14px;
+	border-radius: 16px;
+  /*border-left: solid 1px #282738;*/
+  /*border-right: solid 1px #282738;*/
+  margin-bottom: 5px;
+  margin-left: 0px;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+}
+
+#custom-playerlabel {
+    padding-left: 10px;
+    padding-right: 15px;
+    border-radius: 16px;
+    /*border-left: solid 1px #282738;*/
+    /*border-right: solid 1px #282738;*/
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-style: normal;
 }
