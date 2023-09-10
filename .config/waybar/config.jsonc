@@ -1,151 +1,183 @@
 {
-    "layer": "top",
-    "position": "top",
-    "mod": "dock",
-    "height": 49, 
-    "exclusive": true,
-    "passthrough": false,
-    "gtk-layer-shell": true,
-    "modules-left": ["custom/launcher","wlr/workspaces"],
-    //"modules-left": ["clock","custom/weather","wlr/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["cpu","temperature","custom/memory","pulseaudio","pulseaudio#microphone","clock","network","battery","backlight","tray"],
-    "hyprland/window": {
-        "format": "{}"
-    },
-
-// Modules configuration
-
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "height": 49,
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "gtk-layer-shell": true,
+  "exclusive": true,
+  "passthrough": false,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "cpu",
+    "temperature",
+    "custom/memory",
+    "pulseaudio",
+    "pulseaudio#microphone",
+    "clock",
+    "network",
+    "battery",
+    "backlight",
+    "tray"
+  ],
+  "hyprland/window": {
+    "format": "{}"
+  },
+  // Modules configuration
   "custom/launcher": {
     "format": " ",
     "on-click": "~/.config/waybar/scripts",
     "tooltip": false
   },
-
-    "wlr/workspaces": {
-        "disable-scroll": false,
-        "all-outputs": true,
-        "on-click": "activate",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        }
-    },
-    
-    "cpu": {
-        "interval": 1,
-        "format": "󰍛 {usage}% ",
-        "tooltip": false,
-        "on-click": "kitty -e htop"
-    },
-
-//   "custom/weather" : {
-//        //shows the current weather and forecast
-//        "tooltip" : true,
-//        "format" : "{}",
-//        "interval" : 30,
-//        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-//        "return-type" : "json"
-//    },
-
-    "temperature": {
-        "thermal-zone": 1,
-        "critical-threshold": 80,
-        "format": "{icon}{temperatureC}°C",
-        "format-alt": "{temperatureF}°F {icon}",
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}°C ",
-        "format-icons": ["", "", "󰈸"],
-        "tooltip": false,
-        "on-click": "kitty -e gotop"
-    },
-
-    "custom/memory": {
-        "interval": 5,
-        "exec":"~/.scripts/memory",
-        "format": " {}",
-        "tooltip": false,
-        "on-click": "kitty -e gotop"
-    },
-
-    "clock": {
-        "format": "{: %I:%M %p   %a, %b %e}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
-        "min-length": 6
-    },
-
-
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": " {format_source}",
-        "tooltip": false,
-        "format-muted": "x",
-        "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 1",
-        "on-scroll-down": "pamixer -d 1",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "default": ["", "", ""]
-        }
-    },
-
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": "󰍬 {volume}%",
-        //"format-source-muted": " Muted",
-        "format-source-muted": "󰍭 ",
-        "on-click": "pamixer --default-source -t",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
-    },
-    
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂","󰁹"]
-    },
-
-
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+      "urgent": "",
+      "default": "󰧞",
+      "sort-by-number": true
     }
-
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "󰍛 {usage}% ",
+    "tooltip": false,
+    "on-click": "kitty -e htop"
+  },
+  "temperature": {
+    "thermal-zone": 1,
+    "critical-threshold": 80,
+    "format": "{icon}{temperatureC}°C",
+    "format-alt": "{temperatureF}°F {icon}",
+    "format-critical": "{temperatureC}°C ",
+    "format-icons": [
+      "",
+      "",
+      "󰈸"
+    ],
+    "tooltip": false,
+    "on-click": "kitty -e gotop"
+  },
+  "custom/memory": {
+    "interval": 5,
+    "exec": "~/.scripts/memory",
+    "format": " {}",
+    "tooltip": false,
+    "on-click": "kitty -e gotop"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    //"format-muted": " {format_source}",
+    "format-muted": "x",
+    "tooltip": false,
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer -i 1",
+    "on-scroll-down": "pamixer -d 1",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "󰍬 {volume}%",
+    //"format-source-muted": " Muted",
+    "format-source-muted": "󰍭 ",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
+  "clock": {
+    "format": "{: %I:%M %p   %a,%b %e}",
+    "format-alt": "{:%b %e}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "DOWN :{bandwidthDownBytes} UP :{bandwidthUpBytes}",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "󰂃",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󰃞 ",
+      "󰃟 ",
+      "󰃠 "
+    ],
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "min-length": 6
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  }
 }
