@@ -80,6 +80,8 @@
     "on-click-middle": "playerctl -p spotify play-pause",
     "on-click": "playerctl -p spotify previous",
     "on-click-right": "playerctl -p spotify next",
+    "on-scroll-up": "pamixer -i 1",
+    "on-scroll-down": "pamixer -d 1",
     "format-icons": {
       "Playing": "<span foreground='#a6adc8'>󰒮 󰏥 󰒭</span>",
       "Paused": "<span foreground='#a6adc8'>󰒮 󰐌 󰒭</span>"
@@ -93,19 +95,18 @@
     "on-click-middle": "playerctl -p spotify play-pause",
     "on-click": "playerctl -p spotify previous",
     "on-click-right": "playerctl -p spotify next",
-    "format-icons": {
-      "Playing": "<span foreground='#313244'>󰒮 󰐌 󰒭</span>",
-      "Paused": "<span foreground='#313244'>󰒮 󰏥 󰒭</span>"
-    }
+    "on-scroll-up": "pamixer -i 1",
+    "on-scroll-down": "pamixer -d 1",
   },
   "cpu": {
-    "interval": 1,
+    "interval": 5,
     "format": "󰍛 {usage}% ",
     "tooltip": false,
     "on-click": "foot --term -e htop"
   },
   "temperature": {
-    "thermal-zone": 1,
+    "interval": 5,
+    "thermal-zone": 2,
     "critical-threshold": 80,
     "format": "{icon}{temperatureC}°C",
     "format-alt": "{temperatureF}°F {icon}",
