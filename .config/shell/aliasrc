@@ -20,7 +20,7 @@ alias \
 	bb='brave --incognito' \
 	bbb='brave --tor' \
 	github='brave https://github.com/justsaumit' \
-	ff='librewolf' \
+        ff='librewolf' \
 	v='nvim' \
 	sv='sudo nvim' \
 	vim='nvim' \
@@ -68,10 +68,10 @@ alias \
 	ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"' \
 	recentpacks="grep -i installed /var/log/pacman.log |tac| fzf | cut -d' ' -f4 | "$CLIP" " \
 	scr='ffmpeg -f x11grab -i :0.0 out.mp4' \
-	ss="maim -D -u --select | tee "~/pix/Screenshots/pic-sel-$(date '+%y-%m-%d--%H-%M-%S').png" | "$CLIP" "
-
-pas='pulseaudio --start' \
+        ssw='IMG="pic-sel-$(date +%y-%m-%d--%H-%M-%S).png" && grim -g "$(slurp)" "$GRIM_DEFAULT_DIR/$IMG" && wl-copy < "$GRIM_DEFAULT_DIR/$IMG"' \
+        pas='pulseaudio --start' \
 	pak='pulseaudio --kill' \
+        pwr='systemctl --user restart wireplumber pipewire pipewire-pulse' \
 	pm='pulsemixer' \
 	ssha="echo 'ssh-keygen -t ed25519 -a 100 -f ~/.ssh/<Identityfile> -C <comment>'" \
 	br='brightnessctl set ' \
