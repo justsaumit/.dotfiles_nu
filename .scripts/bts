@@ -41,7 +41,6 @@ case $option in
                 pactl set-card-profile $cardindex handsfree_head_unit
                 notify-send "Switched card profile from $past_profile to $profile" -i audio-headset;;
             esac;;
-    "Reset pulseaudio")
-        ##check for a2dp sink not found error in status command
-        pulseaudio --kill && pulseaudio --cleanup-shm && pulseaudio --start;;
+    "Reset pipewire")
+        systemctl --user restart wireplumber pipewire pipewire-pulse
 esac
