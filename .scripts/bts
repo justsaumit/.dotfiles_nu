@@ -2,27 +2,32 @@
 option=$(echo -e "Connect\nDisconnect\nChange profile\nReset pulseaudio"| tofi --prompt-text "Do you wish to connect/disconnect or change soundprofile of your bluetooth device:") 
 #Prereq: trust the MAC address
 #MAC="11:11:22:ED:08:AD"
-MAC="76:67:11:36:64:A2"
+#MAC="76:67:11:36:64:A2"
 #MAC="E4:59:37:44:27:7A"
+#MAC="2E:85:79:56:B1:D7"
+MAC="28:B7:7B:AB:C9:92"
 case $option in
     "Connect")
-        status=$(systemctl status bluetooth | grep Active | cut -d " " -f 7)
+        status=$(systemctl is-active bluetooth)
         case $status in
       	    "active")
-		    bluetoothctl power on && bluetoothctl connect $MAC && sleep 2 && [ $(bluetoothctl info $MAC|grep "Connected"|awk -F'[:][ ]' '/^[^#]/{print $2}') == "yes" ] && notify-send "Connected" "Bluetooth Device is connected" ||  notify-send "Unable to connect!" "Check whether the bluetooth device is switched on.";;
-	    
+                bluetoothctl power on && bluetoothctl connect $MAC && sleep 2 &&
+                [ $(bluetoothctl info $MAC | grep "Connected" | awk -F'[:][ ]' '/^[^#]/{print $2}') == "yes" ] &&
+                notify-send "Connected" "Bluetooth Device is connected" ||
+                notify-send "Unable to connect!" "Check whether the bluetooth device is switched on.";;
             "inactive" | "failed")
-    		sudo -A systemctl start bluetooth
-	    	#st -e sudo systemctl start bluetooth &&
-		    notify-send "Bluetooth daemon is running"
-		    bluetoothctl power on
-		    bluetoothctl connect $MAC && sleep 1 && [ $(bluetoothctl info $MAC|grep "Connected"|awk -F'[:][ ]' '/^[^#]/{print $2}') == "yes" ] && notify-send "Connected" "Bluetooth Device is connected" ||  notify-send "Unable to connect!" "Check whether the bluetooth device is switched on.";
-            esac;;     
-
+                sudo -A systemctl start bluetooth
+                notify-send "Bluetooth daemon is running"
+                bluetoothctl power on
+                bluetoothctl connect $MAC && sleep 1 &&
+                [ $(bluetoothctl info $MAC | grep "Connected" | awk -F'[:][ ]' '/^[^#]/{print $2}') == "yes" ] &&
+                notify-send "Connected" "Bluetooth Device is connected" ||
+                notify-send "Unable to connect!" "Check whether the bluetooth device is switched on.";;
+        esac;;
     "Disconnect")
             bluetoothctl power off && sudo -A systemctl stop bluetooth
-            notify-send "Disconnected" "Bluetooth Device is disconnected" || notify-send "Unable to disconnect!" ;;
-
+            notify-send "Disconnected" "Bluetooth Device is disconnected" ||
+            notify-send "Unable to disconnect!" ;;
     "Change profile")
         past_profile=$(pactl list | grep "Active Profile" | sed '2p;d' | cut -d ' ' -f 3)
         profile=$(echo -e "a2dp_sink(pure audio output)\nhandsfree_head_unit(inferior audio output + mic enable)" | tofi --prompt-text "Choose the profile for your sound card")
