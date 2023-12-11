@@ -13,21 +13,21 @@ case $option in
       	    "active")
                 bluetoothctl power on && bluetoothctl connect $MAC && sleep 2 &&
                 [ $(bluetoothctl info $MAC | grep "Connected" | awk -F'[:][ ]' '/^[^#]/{print $2}') == "yes" ] &&
-                notify-send "Connected" "Bluetooth Device is connected" ||
-                notify-send "Unable to connect!" "Check whether the bluetooth device is switched on.";;
+                dunstify "Connected" "Bluetooth Device is connected" -i bluetooth ||
+                dunstify "Unable to connect!" "Check whether the bluetooth device is switched on." -i bluetoothb ;;
             "inactive" | "failed")
                 sudo -A systemctl start bluetooth
                 notify-send "Bluetooth daemon is running"
                 bluetoothctl power on
                 bluetoothctl connect $MAC && sleep 1 &&
                 [ $(bluetoothctl info $MAC | grep "Connected" | awk -F'[:][ ]' '/^[^#]/{print $2}') == "yes" ] &&
-                notify-send "Connected" "Bluetooth Device is connected" ||
-                notify-send "Unable to connect!" "Check whether the bluetooth device is switched on.";;
+                dunstify "Connected" "Bluetooth Device is connected" -i bluetooth ||
+                dunstify "Unable to connect!" "Check whether the bluetooth device is switched on." -i bluetoothb ;;
         esac;;
     "Disconnect")
             bluetoothctl power off && sudo -A systemctl stop bluetooth
-            notify-send "Disconnected" "Bluetooth Device is disconnected" ||
-            notify-send "Unable to disconnect!" ;;
+            dunstify "Disconnected" "Bluetooth Device is disconnected" ||
+            dunstify "Unable to disconnect!" ;;
     "Change profile")
         past_profile=$(pactl list | grep "Active Profile" | sed '2p;d' | cut -d ' ' -f 3)
         profile=$(echo -e "a2dp_sink(pure audio output)\nhandsfree_head_unit(inferior audio output + mic enable)" | tofi --prompt-text "Choose the profile for your sound card")
