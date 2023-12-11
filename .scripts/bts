@@ -31,15 +31,15 @@ case $option in
     "Change profile")
         past_profile=$(pactl list | grep "Active Profile" | sed '2p;d' | cut -d ' ' -f 3)
         profile=$(echo -e "a2dp_sink(pure audio output)\nhandsfree_head_unit(inferior audio output + mic enable)" | tofi --prompt-text "Choose the profile for your sound card")
-        cardindex=$(pacmd list-cards | grep 'index' | awk 'NR==2' | cut -d ' ' -f6)
+        cardindex=$(pactl list cards | awk '/^Card #[0-9]+$/ {getline; if ($2 ~ /^bluez_card\./) print $2}')
 
         case $profile in
             "a2dp_sink(pure audio output)")
-                pactl set-card-profile $cardindex a2dp_sink &&
-                dunstify "Switched card profile from $past_profile to $profile" -i audio-headphones;;
+                pactl set-card-profile $cardindex a2dp-sink &&
+                dunstify "Switched card profile" "from $past_profile to $profile" -i audio-headphones;;
             "handsfree_head_unit(inferior audio output + mic enable)")
-                pactl set-card-profile $cardindex handsfree_head_unit
-                notify-send "Switched card profile from $past_profile to $profile" -i audio-headset;;
+                pactl set-card-profile $cardindex headset-head-unit &&
+                dunstify "Switched card profile" "from $past_profile to $profile" -i audio-headset;;
             esac;;
     "Reset pipewire")
         systemctl --user restart wireplumber pipewire pipewire-pulse
