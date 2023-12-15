@@ -7,8 +7,16 @@ done
 
 [[ $option == "w" ]] && parentdir="$rootpapesdir/w" && 	nel="nel" || parentdir="$rootpapesdir/wg"
 
-while [[ -d "$parentdir/$dir" ]]; do
+while true; do
     dir=$(tofi --prompt-text "Enter folder name: " --require-match=false </dev/null)
+
+    if [[ -z "$dir" ]]; then
+        notify-send "Folder name cannot be empty." "Please enter a valid folder name."
+    elif [[ -d "$parentdir/$dir" ]]; then
+        notify-send "Folder '$dir' already exists." "Please choose a different folder name."
+    else
+        break
+    fi
 done
 endir="$parentdir/$dir"
 mkdir -p "$endir"
@@ -19,5 +27,6 @@ threadopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you have the thread link 
 
 wget -P "$endir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' "https://boards.4chan$nel.org/$option/thread/$thread"
 
+notify-send "Folder '$dir' has completed downloading" "You may view the wallpapers :)"
 viewopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you wish to view the downloaded papes now?")
 [[ $viewopt == Yes ]] && imv -fr $endir
