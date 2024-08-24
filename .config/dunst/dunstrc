@@ -47,7 +47,7 @@
     icon_position = left
     max_icon_size = 40
 ##since dunst runs as root on startup $USER would point to root dir
-    icon_path = /home/saumit/.local/share/icons/
+    icon_path = /home/justsaumit/.local/share/icons
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/dmenu -p dunst:
