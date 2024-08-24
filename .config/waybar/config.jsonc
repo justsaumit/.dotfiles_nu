@@ -106,7 +106,7 @@
   },
   "temperature": {
     "interval": 5,
-    "thermal-zone": 2,
+    "thermal-zone": 0,
     "critical-threshold": 80,
     "format": "{icon}{temperatureC}°C",
     "format-alt": "{temperatureF}°F {icon}",
@@ -157,7 +157,9 @@
     "scroll-step": 5
   },
   "clock": {
-    "format": "{: %I:%M %p   %a,%b %e}",
+    "format": " {:%I:%M %p   %a,%b %e}",
+    //"format": " {:%I:%M %p}",
+   // "format": " {:%H:%M}",
     "format-alt": "{:%b %e}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },

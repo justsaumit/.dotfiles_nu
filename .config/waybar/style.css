@@ -181,7 +181,7 @@ tooltip {
 }
 
 #idle-inhibitor{
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
     border-right: 0px;
     margin-left: 0px;
 }
