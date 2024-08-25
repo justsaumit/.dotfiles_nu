@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rootpapesdir="$HOME/pix/wallpaper/4chget"
+rootpapesdir="$HOME/pix/Wallpaper/4chget"
 [ -d "$rootpapesdir" ] || mkdir "$rootpapesdir"
 
 echo "Welcome to 4chan web/image scrapping script"

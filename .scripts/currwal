@@ -1,0 +1,7 @@
+#!/bin/bash
+
+currwallp=$(wpaperctl get-wallpaper eDP-1)
+
+echo $currwallp
+
+[[ "$1" == "-d" ]] && trash-put "$currwallp" && notify-send "Wallpaper sent to Trash" "$currwallp was sent to Trash"
