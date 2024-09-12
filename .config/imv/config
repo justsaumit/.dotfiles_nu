@@ -33,8 +33,9 @@ r = reset
 
 <c> = wl-copy < "imv_current_file"
 <i> = convert $file -channel RGB -negate /tmp/output.png && imv /tmp/output.png
-# Delete and then close an open image by pressing 'X'
-<Ctrl+D> = exec trash-put "$imv_current_file"
+# Delete and then close an open image by pressing 'D'
+<Shift+D> = exec trash-put "$imv_current_file"; close
+#<Ctrl+D> = exec trash-put "$imv_current_file"
 
 # Rotate the currently open image by 90 degrees by pressing 'R'
 #<Ctrl+R> = exec mogrify -rotate 90 "$imv_current_file"
