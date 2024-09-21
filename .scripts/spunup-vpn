@@ -1,0 +1,13 @@
+#!/bin/bash
+VPN_USER=$(pass show OpenVPN-user)
+VPN_PASSWORD=$(pass show OpenVPN-pass)
+
+OVPN_FILES=(*.ovpn)
+if [ ${#OVPN_FILES[@]} -eq 0 ]; then
+    echo "No .ovpn files found in $OVPN_DIR."
+    exit 1
+fi
+CONFIG_FILE=${OVPN_FILES[RANDOM % ${#OVPN_FILES[@]}]}
+
+
+sudo bash -c 'openvpn --config '"$CONFIG_FILE"' --auth-user-pass <(echo -e "'"$VPN_USER"'\n'"$VPN_PASSWORD"'")'
