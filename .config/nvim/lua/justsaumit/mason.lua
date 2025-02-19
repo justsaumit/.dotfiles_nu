@@ -33,7 +33,7 @@ require("mason-lspconfig").setup ({
         "html",
         "lua_ls",
         "marksman",
-        "tsserver",
+        --"tsserver",
         "yamlls",
     },
 })

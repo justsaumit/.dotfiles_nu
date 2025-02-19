@@ -58,11 +58,13 @@ return packer.startup(function(use)
 --Lualine
     use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
 --Bufferline
-    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'nvim-tree/nvim-web-devicons'}
+    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
 --Nvim-tree File explorer for nvim
     use {'nvim-tree/nvim-tree.lua',  requires = { 'nvim-tree/nvim-web-devicons'}}
 --Which-key - displays a popup with possible key bindings
     use 'folke/which-key.nvim'
+--mini.nvim - Lua module pack
+    use 'echasnovski/mini.nvim'
 --Mason-nvim Portable Package manager for LSP and DAP servers, linters and formatters
     use { "williamboman/mason.nvim", run = ":MasonUpdate"} -- :MasonUpdate updates registry contents
 --lsp
