@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+CACHE_FILE="$XDG_CACHE_HOME/laptop-keyboard-disabled"
+
+if [ -f "$CACHE_FILE" ] ;then
+    rm "$CACHE_FILE"
+    hyprctl keyword -r '$TOUCHPAD_ENABLED' "true"
+else
+    touch "$CACHE_FILE"
+    hyprctl keyword -r '$TOUCHPAD_ENABLED' "false"
+fi
