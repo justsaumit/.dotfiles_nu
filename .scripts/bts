@@ -5,7 +5,8 @@ option=$(echo -e "Connect\nDisconnect\nChange profile\nReset pulseaudio"| tofi -
 #MAC="76:67:11:36:64:A2"
 #MAC="E4:59:37:44:27:7A"
 #MAC="2E:85:79:56:B1:D7"
-MAC="28:B7:7B:AB:C9:92"
+#MAC="28:B7:7B:AB:C9:92"
+MAC="EF:9F:2E:52:9E:45"
 case $option in
     "Connect")
         status=$(systemctl is-active bluetooth)

@@ -1,6 +1,7 @@
 #!/bin/sh
 
-content="$@"
+content="$*"
+
 today=$(date +%d%m%y)
 
-x "$today: $content"
+x -t "$today: $content"

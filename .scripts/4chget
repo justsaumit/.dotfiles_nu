@@ -34,10 +34,10 @@ read thread
 
 case "$option" in
 	"wg")
-		wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' https://boards.4chan.org/wg/thread/"$thread" ;;
+		wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org,is2.4channel.org -A png,jpg,jpeg -R '*s.*' https://boards.4chan.org/wg/thread/"$thread" ;;
 
 	"w")
-		wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' https://boards.4channel.org/w/thread/"$thread" ;;
+		wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org,is2.4channel.org -A png,jpg,jpeg -R '*s.*' https://boards.4chan.org/w/thread/"$thread" ;;
 esac
 
 echo "Wallpapers downloaded successfully."

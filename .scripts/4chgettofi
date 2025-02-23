@@ -5,7 +5,8 @@ while [[ "$option" != "w" && "$option" != "wg" ]]; do
     option=$(echo -e "wg\nw" | tofi --prompt-text "Is it wallpaper/general (wg) or anime wallpaper (w)?")
 done
 
-[[ $option == "w" ]] && parentdir="$rootpapesdir/w" && 	nel="nel" || parentdir="$rootpapesdir/wg"
+#[[ $option == "w" ]] && parentdir="$rootpapesdir/w" &&	nel="nel" || parentdir="$rootpapesdir/wg"
+[[ $option == "w" ]] && parentdir="$rootpapesdir/w" || parentdir="$rootpapesdir/wg"
 
 while true; do
     dir=$(tofi --prompt-text "Enter folder name: " --require-match=false </dev/null)
