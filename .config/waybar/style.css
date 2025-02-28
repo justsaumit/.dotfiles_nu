@@ -5,7 +5,7 @@
     /*font-family: Iosevka, FontAwesome, Noto Sans CJK;*/
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 15.9px;
+    font-size: 15.8px;
     min-height: 0;
 }
 
@@ -75,6 +75,7 @@ tooltip {
 #custom-memory,
 #workspaces,
 #tray,
+#custom-toggle-laptop-keyboard,
 #backlight,
 #custom-playerctl,
 #custom-playerlabel {
@@ -98,8 +99,12 @@ tooltip {
 }
 
 #tray {
-    border-radius: 10px;
-    margin-right: 5px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#custom-toggle-laptop-keyboard{
+    border-radius: 0px 10px 10px 0px;
+    margin-right: 2px
 }
 
 #workspaces {

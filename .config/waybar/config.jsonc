@@ -30,7 +30,8 @@
     "network",
     "battery",
     "backlight",
-    "tray"
+    "tray",
+    "custom/toggle-laptop-keyboard"
   ],
   "hyprland/window": {
     "format": "{}"
@@ -211,5 +212,10 @@
   "tray": {
     "icon-size": 18,
     "spacing": 10
-  }
+  },
+ "custom/toggle-laptop-keyboard": {
+   "format": " ",
+   "on-click": "~/.scripts/keyboard-disable-hypr",
+   "tooltip-format": "Toggle Laptop Keyboard"
+ }
 }
