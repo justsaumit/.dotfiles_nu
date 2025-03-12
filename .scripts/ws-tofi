@@ -9,18 +9,35 @@
 siteclip=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you have the website link in your clipboard?")
 [[ "$siteclip" == "Yes" ]] && WEBSITE_URL=$(wl-paste) || WEBSITE_URL=$(tofi --prompt-text "Enter website url:" --require-match false </dev/null)
 
+
+[[ "$WEBSITE_URL" == "exit" ]] && echo "Exiting" && notify-send "Exiting" "Exiting the script" && exit 1
+
 # Define the output file name
 OUTPUT_FILE="$(basename "$WEBSITE_URL").html"
 
 while true; do
-    TOPIC=$(tofi --prompt-text "Enter topic name: " --require-match=false </dev/null)
+    topicopt=$(echo -e "New\nPre-existing" | tofi --prompt-text "Do you wish to add a new topic or pre-existing topic?")
 
-    if [[ "$TOPIC" == "none" ]]; then
-        TOPIC="" && break
-    elif [[ -z "$TOPIC" ]]; then
-        notify-send "Folder name cannot be empty." "Please enter a valid folder name."
-    else
-        break
+    if [[ "$topicopt" == "Pre-existing" ]]; then 
+        # Pre-existing topic selection
+        TOPIC=$(find "$HOME/read" -maxdepth 1 -type d -exec basename {} \; cat - <(echo "none\nexit") | tofi --prompt-text "Choose the topic:")
+
+        [[ "$TOPIC" == "exit" ]] && echo "Exiting" && notify-send "Exiting" "Exiting the script" && exit 1 \
+        || [[ "$TOPIC" != "none" ]] && break
+     else
+         # New Topic Creation
+        TOPIC=$(tofi --prompt-text "Enter topic name: " --require-match=false </dev/null)
+
+        if [[ "$TOPIC" == "none" ]]; then
+            TOPIC=""
+            break
+        elif [[ "$TOPIC" == "exit" ]]; then
+            echo "Exiting" && notify-send "Exiting" "Exiting the script" && exit 1
+        elif [[ -z "$TOPIC" ]]; then
+            notify-send "Folder name cannot be empty." "Please enter a valid folder name."
+        else
+            break
+        fi
     fi
 done
 
@@ -28,7 +45,7 @@ done
 USER_AGENT=
 
 # Define the directory where the HTML files will be saved
-OUTPUT_DIR="$HOME/read"$TOPIC""
+OUTPUT_DIR="$HOME/read/"$TOPIC""
 
 # Create the directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
