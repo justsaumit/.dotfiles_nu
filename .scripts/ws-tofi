@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Prerequisite tools check
+[[ ! $(command -v brave) ]] && { echo "Error: 'brave' is not installed. Please install Brave Browser."; [[ $(command -v notify-send) ]] && notify-send "Error" "'brave' is not installed. Please install Brave Browser."; exit 1; }
+[[ ! $(command -v monolith) ]] && { echo "Error: 'monolith' is not installed. Please install Monolith."; [[ $(command -v notify-send) ]] && notify-send "Error" "'monolith' is not installed. Please install Monolith."; exit 1; }
+[[ ! $(command -v notify-send) ]] && echo "Warning: 'notify-send' is not installed. Notifications will not work."
+
+# Get the website URL from arguments
+siteclip=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you have the website link in your clipboard?")
+[[ "$siteclip" == "Yes" ]] && WEBSITE_URL=$(wl-paste) || WEBSITE_URL=$(tofi --prompt-text "Enter website url:" --require-match false </dev/null)
+
+# Define the output file name
+OUTPUT_FILE="$(basename "$WEBSITE_URL").html"
+
+while true; do
+    TOPIC=$(tofi --prompt-text "Enter topic name: " --require-match=false </dev/null)
+
+    if [[ "$TOPIC" == "none" ]]; then
+        TOPIC="" && break
+    elif [[ -z "$TOPIC" ]]; then
+        notify-send "Folder name cannot be empty." "Please enter a valid folder name."
+    else
+        break
+    fi
+done
+
+# Add later
+USER_AGENT=
+
+# Define the directory where the HTML files will be saved
+OUTPUT_DIR="$HOME/read"$TOPIC""
+
+# Create the directory if it doesn't exist
+mkdir -p "$OUTPUT_DIR"
+
+# Check if the output file already exists
+if [ -e "$OUTPUT_DIR/$OUTPUT_FILE" ]; then
+  # If file exists, add a suffix
+  COUNTER=1
+  while [ -e "${OUTPUT_FILE%.html}_$COUNTER.html" ]; do
+    COUNTER=$((COUNTER + 1))
+  done
+  OUTPUT_FILE="${OUTPUT_FILE%.html}_$COUNTER.html"
+fi
+
+# Use Brave in headless mode and pipe it to Monolith
+brave --headless --window-size=1920,1080 --run-all-compositor-stages-before-draw --virtual-time-budget=9000 --incognito --dump-dom "$WEBSITE_URL" | monolith - -I -b "$WEBSITE_URL" -o  "$OUTPUT_DIR/$OUTPUT_FILE"
+
+echo "HTML file saved as $OUTPUT_DIR/$OUTPUT_FILE"
+notify-send "Website saved" "HTML file saved successfully as $OUTPUT_DIR/$OUTPUT_FILE"
