@@ -101,9 +101,19 @@
   },
   "cpu": {
     "interval": 5,
-    "format": "󰍛 {usage}% ",
+    // "format": "󰍛 {usage}% ",
+    "format-critical":"<span color='#c20821'><b>󰍛 {usage}%</b></span>",
+    "format-high":    "<span color='#e03c52'>󰍛 {usage}%</span>",
+    "format-medium":  "<span color='#f9e2af'>󰍛 {usage}%</span>",
+    "format-low":     "<span color='#b2beb5'>󰍛 {usage}%</span>",
     "tooltip": false,
-    "on-click": "foot --term -e htop"
+    "on-click": "foot --term -e htop",
+    "states": {
+        "critical": 80,
+        "high": 50,
+        "medium": 5,
+        "low": 0,
+    },
   },
   "temperature": {
     "interval": 5,
@@ -215,7 +225,7 @@
   },
  "custom/toggle-laptop-keyboard": {
    "format": " ",
-   "on-click": "~/.scripts/keyboard-disable-hypr",
+   "on-click": "~/.scripts/toggle-keyboard-hypr",
    "tooltip-format": "Toggle Laptop Keyboard"
  }
 }
