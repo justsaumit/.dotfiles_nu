@@ -1,0 +1,14 @@
+[Unit]
+Description=20-20-20 Eye Rest Reminder
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.scripts/20-20-20.sh
+Restart=always
+RestartSec=10
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-1
+
+[Install]
+WantedBy=default.target
