@@ -1,0 +1,87 @@
+{
+  // =========================================================
+  // CORE EDITOR & APPEARANCE
+  // =========================================================
+  "editor.fontSize": 16,
+  "editor.insertSpaces": false,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  
+  // Visual Guides
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  
+  // Minimap (Small code preview on the right)
+  "editor.minimap.enabled": false,
+  "editor.minimap.autohide": "none", // Redundant if enabled is false, but kept for preference
+
+  // =========================================================
+  // WORKBENCH & UI
+  // =========================================================
+  "workbench.colorTheme": "Tokyo Night Gogh",
+  "workbench.iconTheme": "material-icon-theme",
+  "window.titleBarStyle": "custom",
+  "workbench.settings.applyToAllProfiles": [],
+
+  // =========================================================
+  // FILE SAVING
+  // =========================================================
+  // Replaces the "Auto save while typing" extension
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000, // Saves 1 second after you stop typing
+
+  // =========================================================
+  // VIM CONFIGURATION
+  // =========================================================
+  "vim.useSystemClipboard": true,
+  "vim.handleKeys": {
+    "<C-k>": false // Allows Ctrl+K chords (like language switching) to bypass Vim
+  },
+
+  // =========================================================
+  // KEYBOARD & INPUT
+  // =========================================================
+  // Fixes CapsLock remap issues on Linux/Hyprland
+  "keyboard.dispatch": "keyCode",
+
+  // =========================================================
+  // GIT INTEGRATION
+  // =========================================================
+  "git.confirmSync": false,      // Don't ask before syncing
+  "git.enableSmartCommit": true, // Commit all changes if none are staged
+
+  // =========================================================
+  // LANGUAGE SPECIFIC FORMATTERS
+  // =========================================================
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+
+  // =========================================================
+  // EXTENSIONS & MISC
+  // =========================================================
+  // Spell Checker
+  "cSpell.userWords": [
+    "Bootcamp",
+    "lmao"
+  ],
+
+  // Live Server
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.ChromeDebuggingAttachment": false,
+
+  // Remote SSH
+  "remote.SSH.remotePlatform": {
+    "sandbox.vyxff4.csb": "linux"
+  },
+
+  // Icons & AI
+  "vsicons.dontShowNewVersionMessage": true,
+  "chat.disableAIFeatures": true
+}

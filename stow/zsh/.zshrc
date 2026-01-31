@@ -6,7 +6,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="spaceship"
-
+PROMPT='$(kube_ps1)'$PROMPT
+export SPACESHIP_KUBECTL_SHOW=true
+export SPACESHIP_KUBECTL_VERSION_SHOW=false  # Hide version if it's too verbose
+export SPACESHIP_KUBECTL_NAMESPACE_SHOW=true  # Show current namespace
+export SPACESHIP_KUBECTL_PREFIX=" "
+export SPACESHIP_KUBECTL_SYMBOL="⎈ "
+export SPACESHIP_KUBECTL_COLOR="cyan"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -85,6 +91,16 @@ plugins=(
   nvm
   npm
   node
+  kubectl
+  kubectx
+  kube-ps1
+  aws
+  azure
+  helm
+  terraform
+  ansible
+  fzf
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,10 +133,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias kns="kubens"
+alias kctx="kubectx"
 
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/x
 export PATH="$PATH:$HOME/.scripts"
+
+export ANDROID_HOME=/home/justsaumit/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -131,3 +155,5 @@ export PATH="$PATH:$HOME/.scripts"
 [ -f "${xdg_config_home:-$home/.config}/shell/shortcutrc" ] && source "${xdg_config_home:-$home/.config}/shell/shortcutrc"
 # Load profile
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile"
+# Load secrets
+[ -f "${XDG_CONFIG_HOME:-$HOME}/.zsh_secrets" ] && source "${XDG_CONFIG_HOME:-$HOME}/.zsh_secrets"
