@@ -1,0 +1,9 @@
+[Default Applications]
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/x-msvideo=mpv.desktop
+video/webm=mpv.desktop
+video/mpeg=mpv.desktop
+video/*=mpv.desktop
+
+[Added Associations]
