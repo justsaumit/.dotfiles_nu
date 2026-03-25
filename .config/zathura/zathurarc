@@ -5,8 +5,10 @@ set page-padding 1
 set adjust-open width
 
 
-map j scroll half-down
-map k scroll half-up
+#map j scroll half-down
+#map k scroll half-up
+map <C-j> scroll half-down
+map <C-k> scroll half-up
 map J zoom out
 map K zoom in
 map - zoom out
@@ -29,6 +31,8 @@ map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
 
 map i recolor
+map [fullscreen] i recolor
+
 map gg goto top
 map G goto bottom
 
