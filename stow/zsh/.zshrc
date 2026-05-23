@@ -161,3 +161,7 @@ export PATH="$PATH:$ANDROID_HOME/tools/bin"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile"
 # Load secrets
 [ -f "${XDG_CONFIG_HOME:-$HOME}/.zsh_secrets" ] && source "${XDG_CONFIG_HOME:-$HOME}/.zsh_secrets"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
