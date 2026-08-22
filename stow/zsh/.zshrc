@@ -14,10 +14,6 @@ export SPACESHIP_KUBECTL_PREFIX=" "
 export SPACESHIP_KUBECTL_SYMBOL="⎈ "
 export SPACESHIP_KUBECTL_COLOR="cyan"
 
-if [[ $(tty) == "/dev/tty1" ]]; then
-       start-hyprland
-fi
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -165,3 +161,7 @@ export PATH="$PATH:$ANDROID_HOME/tools/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+if [[ $(tty) == "/dev/tty1" ]]; then
+       start-hyprland
+fi

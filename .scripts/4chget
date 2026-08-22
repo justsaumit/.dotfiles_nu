@@ -32,12 +32,13 @@ echo "Directory '$dir' created successfully."
 echo "Enter thread no.: (#######)"
 read thread
 
-case "$option" in
-	"wg")
-		wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org,is2.4channel.org -A png,jpg,jpeg -R '*s.*' https://boards.4chan.org/wg/thread/"$thread" ;;
-
-	"w")
-		wget -P "$parentdir/$dir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org,is2.4channel.org -A png,jpg,jpeg -R '*s.*' https://boards.4chan.org/w/thread/"$thread" ;;
-esac
+curl -s "https://a.4cdn.org/$option/thread/$thread.json" | \
+    jq -r '.posts[] | select(.tim) | [(.tim|tostring), .filename, .ext] | @tsv' | \
+    while IFS=$'\t' read -r tim filename ext; do
+        outfile="$parentdir/$dir/${filename}${ext}"
+        [[ -f "$outfile" ]] && outfile="$parentdir/$dir/${filename}_${tim}${ext}"
+        curl -s "https://i.4cdn.org/$option/${tim}${ext}" -o "$outfile"
+        echo "Downloaded: ${filename}${ext}"
+    done
 
 echo "Wallpapers downloaded successfully."

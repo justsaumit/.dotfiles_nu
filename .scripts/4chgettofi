@@ -26,7 +26,13 @@ threadopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you have the thread link 
 
 [[ "$threadopt" == "Yes" ]] && thread=$(wl-paste | grep -oP '(?<=thread\/)\d+') || thread=$(tofi --prompt-text "Enter thread no.: (#######) " --require-match false </dev/null)
 
-wget -P "$endir" -nd -r -l 1 -H -D i.4cdn.org,is2.4chan.org -A png,jpg,jpeg -R '*s.*' "https://boards.4chan$nel.org/$option/thread/$thread"
+curl -s "https://a.4cdn.org/$option/thread/$thread.json" | \
+    jq -r '.posts[] | select(.tim) | [(.tim|tostring), .filename, .ext] | @tsv' | \
+    while IFS=$'\t' read -r tim filename ext; do
+        outfile="$endir/${filename}${ext}"
+        [[ -f "$outfile" ]] && outfile="$endir/${filename}_${tim}${ext}"
+        curl -s "https://i.4cdn.org/$option/${tim}${ext}" -o "$outfile"
+    done
 
 notify-send "Folder '$dir' has completed downloading" "You may view the wallpapers :)"
 viewopt=$(echo -e "Yes\nNo" | tofi --prompt-text "Do you wish to view the downloaded papes now?")
