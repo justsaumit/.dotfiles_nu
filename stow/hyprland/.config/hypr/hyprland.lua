@@ -47,9 +47,6 @@ end)
 hl.env("XCURSOR_SIZE",         "24")
 hl.env("HYPRCURSOR_SIZE",      "24")
 hl.env("XDG_SESSION_TYPE",     "wayland")
-hl.env("WLR_NO_HARDWARE_CURSORS", "1")
-hl.env("WLR_DRM_NO_MODIFIERS", "1")
-hl.env("WLR_RENDERER",         "vulkan")
 
 
 -----------------------
